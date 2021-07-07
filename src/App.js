@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import AddList from "./Components/ToDo/AddList";
+import DisplayList from "./Components/ToDo/DisplayList";
 
 function App() {
+  const [toDoList, setToDoList] = useState([]);
+ 
+
+  const addToDoListHandler = (todo,checked) => {
+    setToDoList((prevList) => {
+      return [
+        ...prevList,
+        {
+          todo: todo,
+          priority:checked,
+          id: Math.random().toString(),
+        },
+      ];
+    });
+  };
+  const deleteHandler = (toDoId)=>{
+  const newTodos = toDoList.filter((_, id) => id !== toDoId);
+
+  setToDoList(newTodos);
+
+
+  }
+ 
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <AddList onAddTodo={addToDoListHandler} />
+      <DisplayList toDoList={toDoList} onDelete={deleteHandler}/>
     </div>
   );
 }
