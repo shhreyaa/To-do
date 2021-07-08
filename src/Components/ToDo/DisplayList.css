@@ -14,13 +14,10 @@
   margin: 0.5rem 0;
   padding: 0.5rem;
   width: 90%;
-  
 }
-.users.done li {
-  border: 1px solid #ccc;
-  margin: 0.5rem 0;
-  padding: 0.5rem;
-  width: 90%;
-  
-   text-decoration: line-through;
+.strike {
+  text-decoration: line-through;
+}
+.priority{
+  border-color: red;
 }
